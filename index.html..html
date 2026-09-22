@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#132338">
+  <title>Triagem | Dra. Adriana Cavalcanti</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1426836009371327');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1426836009371327&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    :root {
+      --navy: #132338;
+      --navy-dark: #0f1c2d;
+      --teal: #2fa89f;
+      --teal-dark: #1c7f79;
+      --teal-tint: #eef9f8;
+      --gold: #c8a56a;
+      --cream: #f8f7f3;
+      --white: #ffffff;
+      --text: #16213b;
+      --muted: #5b6678;
+      --border: #e4dfd5;
+      --danger: #b42318;
+      --btn-green: #0d6b63;
+      --shadow: 0 20px 55px rgba(23, 35, 63, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 22px 12px;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(47, 168, 159, 0.13), transparent 28%),
+        linear-gradient(135deg, #f3f6f6 0%, var(--cream) 100%);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .app {
+      width: min(100%, 620px);
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(200, 165, 106, 0.30);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ---------- Cabeçalho ---------- */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      color: var(--white);
+      background: linear-gradient(180deg, #162b45 0%, #102033 100%);
+    }
+
+    .brand-avatar-ring {
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff2a7a, #ff7a18, #ffd000, #9000ff);
+      padding: 2.5px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #102033;
+      padding: 2px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+
+    .brand-text {
+      flex: 1;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+      color: #8faec9;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 400;
+    }
+
+    /* ---------- Progresso ---------- */
+    .progress-area {
+      padding: 10px 24px 16px;
+      color: #b7cbde;
+      background: #102033;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .progress-track {
+      height: 5px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), #59d2c8);
+      transition: width 0.35s ease;
+    }
+
+    /* ---------- Conteúdo ---------- */
+    .content { padding: 32px 30px 28px; }
+
+    .step { animation: enter 0.25s ease; }
+
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(23px, 5.2vw, 30px);
+      line-height: 1.2;
+    }
+
+    h1:focus { outline: none; }
+
+    .description {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .options { display: grid; gap: 11px; }
+
+    .option {
+      width: 100%;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      background: var(--white);
+      font: inherit;
+      font-size: 15.5px;
+      line-height: 1.35;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .opt-icon {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      color: var(--teal-dark);
+    }
+
+    .opt-label { flex: 1; }
+
+    .opt-mark {
+      flex: 0 0 auto;
+      color: var(--gold);
+      font-size: 22px;
+    }
+
+    .option:hover { border-color: var(--teal); background: var(--teal-tint); }
+
+    .option[aria-pressed="true"] {
+      border-color: var(--teal);
+      background: var(--teal-tint);
+      box-shadow: inset 0 0 0 1px var(--teal);
+      font-weight: 700;
+    }
+
+    .option[aria-pressed="true"] .opt-mark {
+      color: var(--white);
+      background: var(--teal-dark);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+    }
+
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .trust li::before {
+      content: "✓";
+      margin-right: 6px;
+      color: var(--teal-dark);
+      font-weight: 800;
+    }
+
+    /* ---------- Formulário ---------- */
+    .fields { display: grid; gap: 15px; }
+
+    .fields-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label.field-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .autocomplete-wrap { position: relative; }
+
+    input[type="text"],
+    input[type="tel"] {
+      width: 100%;
+      height: 50px;
+      padding: 0 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      background: var(--white);
+      font: inherit;
+      font-size: 15px;
+    }
+
+    input:focus { outline: none; border-color: var(--teal); }
+    input[aria-invalid="true"] { border-color: var(--danger); }
+
+    .dropdown-list {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      background: var(--white);
+      border: 1.5px solid var(--teal);
+      border-radius: 10px;
+      box-shadow: 0 10px 24px rgba(23, 35, 63, 0.16);
+      z-index: 100;
+      margin: 0;
+      padding: 4px 0;
+      list-style: none;
+      display: none;
+    }
+
+    .dropdown-list.active { display: block; }
+
+    .dropdown-item {
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dropdown-item:hover {
+      background: var(--teal-tint);
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+
+    .dropdown-item small { color: var(--muted); font-size: 12px; }
+
+    .field-error {
+      min-height: 0;
+      margin: 4px 0 0;
+      color: var(--danger);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .field-error:empty { display: none; }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      cursor: pointer;
+    }
+
+    .consent input {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      margin: 1px 0 0;
+      accent-color: var(--teal-dark);
+    }
+
+    .actions { display: flex; gap: 10px; margin-top: 22px; }
+
+    .btn {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 13px;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-back { color: #162b45; background: #eef1f5; }
+    .btn-next {
+      flex: 1;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--teal-dark), #24968e);
+      box-shadow: 0 8px 18px rgba(47, 168, 159, 0.22);
+    }
+
+    /* ---------- Tela Final ---------- */
+    .final-card {
+      text-align: center;
+      padding: 10px 8px 14px;
+    }
+
+    .final-check-circle {
+      width: 64px;
+      height: 64px;
+      background: #e6f4ea;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      color: #0d6b63;
+    }
+
+    .final-check-circle svg {
+      width: 32px;
+      height: 32px;
+      stroke-width: 3;
+    }
+
+    .final-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(23px, 5.2vw, 30px);
+      font-weight: 700;
+      color: #17233f;
+      margin: 0 0 12px;
+    }
+
+    .heart-icon {
+      font-size: 26px;
+      margin-bottom: 18px;
+      display: block;
+      line-height: 1;
+    }
+
+    .final-p {
+      color: #4b586c;
+      font-size: 15.5px;
+      line-height: 1.55;
+      margin: 0 auto 18px;
+      max-width: 520px;
+    }
+
+    .final-wa-btn {
+      width: 100%;
+      min-height: 54px;
+      background: var(--btn-green);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      margin-top: 14px;
+      box-shadow: 0 8px 20px rgba(13, 107, 99, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .final-wa-btn:hover {
+      background: #09504a;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 520px) {
+      body { padding: 0; background: var(--white); place-items: stretch; }
+      .app { min-height: 100vh; min-height: 100dvh; border: 0; border-radius: 0; box-shadow: none; }
+      .brand { padding: 16px 18px; }
+      .brand-avatar-ring { width: 52px; height: 52px; flex: 0 0 52px; }
+      .brand-text strong { font-size: 18px; }
+      .brand-text span { font-size: 13px; }
+      .progress-area { padding-inline: 18px; }
+      .content { padding: 24px 18px 22px; }
+      .fields-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="brand">
+      <div class="brand-avatar-ring">
+        <div class="brand-avatar-inner">
+          <img 
+            src="https://i.ibb.co/MDTW3t9M/Dra-Adriana-Cavalcanti-LOGO.jpg" 
+            alt="Dra. Adriana Cavalcanti" 
+            class="brand-avatar"
+            onerror="this.onerror=null; this.src='Dra. Adriana Cavalcanti LOGO.jpg';"
+          >
+        </div>
+      </div>
+      <div class="brand-text">
+        <strong>Dra. Adriana Cavalcanti</strong>
+        <span>Neuromodulação · Avaliação do funcionamento cerebral</span>
+      </div>
+    </header>
+
+    <div class="progress-area" id="progressArea">
+      <div class="progress-labels">
+        <span id="stepLabel">Etapa 1 de 5</span>
+        <span id="percentLabel">20%</span>
+      </div>
+      <div class="progress-track" id="progressTrack" role="progressbar" aria-label="Progresso da triagem" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <section class="content" id="stage" aria-live="polite"></section>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const CONFIG = {
+        whatsapp: "5586994567626",
+        storageKey: "triagem_adriana_pixel_only"
+      };
+
+      const TOTAL = 5;
+      const FINAL = TOTAL + 1;
+
+      const ICONS = {
+        focus: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>',
+        calm: '<path d="M3 12c3-6 6 6 9 0s6 6 9 0"/>',
+        sleep: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+        neuro: '<path d="M3 12h4l2-6 4 12 2-6h6"/>',
+        search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>'
+      };
+
+      const svgIcon = name => `<svg class="opt-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
+
+      const MINOR_AGES = ["Até 12 anos", "13 a 17 anos"];
+
+      const ESTADOS = [
+        { uf: "PI", nome: "Piauí" },
+        { uf: "MA", nome: "Maranhão" },
+        { uf: "CE", nome: "Ceará" },
+        { uf: "BA", nome: "Bahia" },
+        { uf: "PE", nome: "Pernambuco" },
+        { uf: "DF", nome: "Distrito Federal" },
+        { uf: "SP", nome: "São Paulo" },
+        { uf: "RJ", nome: "Rio de Janeiro" },
+        { uf: "MG", nome: "Minas Gerais" },
+        { uf: "AC", nome: "Acre" },
+        { uf: "AL", nome: "Alagoas" },
+        { uf: "AP", nome: "Amapá" },
+        { uf: "AM", nome: "Amazonas" },
+        { uf: "ES", nome: "Espírito Santo" },
+        { uf: "GO", nome: "Goiás" },
+        { uf: "MT", nome: "Mato Grosso" },
+        { uf: "MS", nome: "Mato Grosso do Sul" },
+        { uf: "PA", nome: "Pará" },
+        { uf: "PB", nome: "Paraíba" },
+        { uf: "PR", nome: "Paraná" },
+        { uf: "RN", nome: "Rio Grande do Norte" },
+        { uf: "RS", nome: "Rio Grande do Sul" },
+        { uf: "RO", nome: "Rondônia" },
+        { uf: "RR", nome: "Roraima" },
+        { uf: "SC", nome: "Santa Catarina" },
+        { uf: "SE", nome: "Sergipe" },
+        { uf: "TO", nome: "Tocantins" }
+      ];
+
+      const CIDADES_POR_UF = {
+        PI: ["Teresina", "Parnaíba", "Picos", "Floriano", "Piripiri", "Campo Maior", "Barras", "Altos", "União", "Esperantina", "José de Freitas", "Demerval Lobão"],
+        MA: ["Timon", "Caxias", "São Luís", "Imperatriz", "Codó", "Bacabal", "Açailândia", "Santa Inês", "Coelho Neto"],
+        CE: ["Fortaleza", "Caucaia", "Juazeiro do Norte", "Maracanaú", "Sobral", "Crato", "Itapipoca"]
+      };
+
+      const CIDADES_DEFAULT = ["Teresina", "Timon", "Parnaíba", "Picos", "Floriano", "Campo Maior", "Altos", "Caxias", "Fortaleza", "São Luís"];
+
+      const QUESTIONS = [
+        {
+          key: "motivo",
+          eyebrow: "Avaliação personalizada",
+          title: () => "O que mais tem incomodado você ou seu familiar atualmente?",
+          text: "Selecione a opção que mais se aproxima do motivo da sua busca.",
+          options: [
+            { value: "Atenção, foco e memória", label: "Dificuldade de atenção, foco ou memória", icon: "focus" },
+            { value: "Bem-estar emocional e relaxamento", label: "Ansiedade, estresse ou dificuldade para relaxar", icon: "calm" },
+            { value: "Sono e disposição", label: "Sono, cansaço ou baixa disposição", icon: "sleep" },
+            { value: "Neurologia e reabilitação", label: "Alterações neurológicas ou reabilitação", icon: "neuro" },
+            { value: "Funcionamento cerebral", label: "Quero entender melhor meu funcionamento cerebral", icon: "search" }
+          ],
+          trust: ["Leva cerca de 1 minuto", "Sem compromisso", "Seus dados são protegidos"]
+        },
+        {
+          key: "paraQuem",
+          eyebrow: "Para entendermos melhor",
+          title: () => "Para quem é a avaliação?",
+          text: "Escolha quem poderá receber o atendimento.",
+          options: [
+            { value: "Para mim", label: "Para mim" },
+            { value: "Para meu filho ou minha filha", label: "Para meu filho ou minha filha" },
+            { value: "Para outro familiar", label: "Para outro familiar" }
+          ]
+        },
+        {
+          key: "faixaEtaria",
+          eyebrow: "Perfil do atendimento",
+          title: a => a.paraQuem === "Para mim" ? "Qual é a sua faixa etária?" : "Qual é a faixa etária da pessoa avaliada?",
+          text: "Essa informação ajuda a equipe a direcionar o primeiro contato.",
+          options: ["Até 12 anos", "13 a 17 anos", "18 a 39 anos", "40 a 59 anos", "60 anos ou mais"].map(v => ({ value: v, label: v }))
+        },
+        {
+          key: "disponibilidade",
+          eyebrow: "Atendimento em Teresina",
+          title: () => "Você tem disponibilidade para atendimento presencial em Teresina?",
+          text: "Selecione a alternativa que mais combina com sua rotina.",
+          options: [
+            { value: "Sim, tenho disponibilidade", label: "Sim, tenho disponibilidade" },
+            { value: "Moro em outra cidade, mas posso me deslocar", label: "Moro em outra cidade, mas posso me deslocar" },
+            { value: "Quero receber mais informações primeiro", label: "Quero receber mais informações primeiro" }
+          ]
+        }
+      ];
+
+      const answers = {};
+      let current = 1;
+      let submitted = false;
+      let locked = false;
+
+      const $ = sel => document.querySelector(sel);
+      const stage = $("#stage");
+
+      function clampStep(n) {
+        let limit = QUESTIONS.findIndex(q => !answers[q.key]);
+        limit = limit === -1 ? TOTAL : limit + 1;
+        if (submitted) limit = FINAL;
+        return Math.max(1, Math.min(n, limit));
+      }
+
+      function renderQuestion(step) {
+        const q = QUESTIONS[step - 1];
+        const selected = answers[q.key];
+        const opts = q.options.map((o, i) => `
+          <button class="option" type="button" data-index="${i}" aria-pressed="${selected === o.value}">
+            ${o.icon ? svgIcon(o.icon) : ""}
+            <span class="opt-label">${o.label}</span>
+            <span class="opt-mark" aria-hidden="true">${selected === o.value ? "✓" : "›"}</span>
+          </button>`).join("");
+        const trust = q.trust ? `<ul class="trust">${q.trust.map(t => `<li>${t}</li>`).join("")}</ul>` : "";
+        const back = step > 1 ? `<div class="actions"><button class="btn btn-back" type="button" data-back>Voltar</button></div>` : "";
+
+        stage.innerHTML = `
+          <div class="step">
+            <p class="eyebrow">${q.eyebrow}</p>
+            <h1 id="stepTitle" tabindex="-1">${q.title(answers)}</h1>
+            <p class="description">${q.text}</p>
+            <div class="options" role="group">${opts}</div>
+            ${trust}
+            ${back}
+          </div>`;
+
+        stage.querySelectorAll(".option").forEach(btn => {
+          btn.addEventListener("click", () => {
+            if (locked) return;
+            locked = true;
+            const opt = q.options[Number(btn.dataset.index)];
+            answers[q.key] = opt.value;
+            stage.querySelectorAll(".option").forEach(b => {
+              const on = b === btn;
+              b.setAttribute("aria-pressed", on);
+              b.querySelector(".opt-mark").textContent = on ? "✓" : "›";
+            });
+            setTimeout(() => { locked = false; showStep(step + 1); }, 220);
+          });
+        });
+      }
+
+      function renderContact() {
+        const forMe = answers.paraQuem === "Para mim";
+        const minor = MINOR_AGES.includes(answers.faixaEtaria);
+        const notice = minor
+          ? `<p style="margin: 0 0 16px; padding: 12px 14px; border-left: 3px solid var(--gold); background: #fbf8f1; font-size: 13px;">Como a pessoa avaliada é menor de idade, o contato deve ser feito por um responsável legal.</p>`
+          : "";
+
+        stage.innerHTML = `
+          <div class="step">
+            <p class="eyebrow">Etapa 5 de 5</p>
+            <h1 id="stepTitle" tabindex="-1">Qual seu nome e WhatsApp para receber o atendimento?</h1>
+            <p class="description">Preencha os dados abaixo para continuar o atendimento diretamente pelo WhatsApp.</p>
+            ${notice}
+            <form id="contactForm" novalidate>
+              <div class="fields">
+                <div>
+                  <label class="field-label" for="nome">${forMe ? "Seu nome completo" : "Seu nome completo (responsável)"}</label>
+                  <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome">
+                  <p class="field-error" id="err-nome"></p>
+                </div>
+
+                <div>
+                  <label class="field-label" for="telefone">WhatsApp com DDD</label>
+                  <input id="telefone" name="telefone" type="tel" placeholder="(86) 99456-7626">
+                  <p class="field-error" id="err-telefone"></p>
+                </div>
+
+                <div class="fields-row">
+                  <div>
+                    <label class="field-label" for="estado">Estado (UF)</label>
+                    <div class="autocomplete-wrap">
+                      <input id="estado" name="estado" type="text" autocomplete="off" placeholder="Clique ou digite">
+                      <ul class="dropdown-list" id="listEstado"></ul>
+                    </div>
+                    <p class="field-error" id="err-estado"></p>
+                  </div>
+
+                  <div>
+                    <label class="field-label" for="cidade">Cidade</label>
+                    <div class="autocomplete-wrap">
+                      <input id="cidade" name="cidade" type="text" autocomplete="off" placeholder="Clique ou digite">
+                      <ul class="dropdown-list" id="listCidade"></ul>
+                    </div>
+                    <p class="field-error" id="err-cidade"></p>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="consent">
+                    <input id="consentimento" type="checkbox">
+                    <span>Autorizo o uso das informações preenchidas exclusivamente para dar continuidade à minha solicitação de atendimento, conforme a LGPD.</span>
+                  </label>
+                  <p class="field-error" id="err-consentimento"></p>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="btn btn-back" type="button" data-back>Voltar</button>
+                <button class="btn btn-next" type="submit">Continuar para o WhatsApp</button>
+              </div>
+            </form>
+          </div>`;
+
+        const form = $("#contactForm");
+        const fields = {
+          nome: $("#nome"),
+          telefone: $("#telefone"),
+          estado: $("#estado"),
+          cidade: $("#cidade"),
+          consentimento: $("#consentimento")
+        };
+
+        fields.nome.value = answers.nome || "";
+        fields.telefone.value = answers.telefone || "";
+        fields.estado.value = answers.estado || "";
+        fields.cidade.value = answers.cidade || "";
+
+        let selectedUF = answers.uf || "";
+
+        const listEstado = $("#listEstado");
+        function showEstados(filter = "") {
+          const clean = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          const items = ESTADOS.filter(e => 
+            e.nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(clean) ||
+            e.uf.toLowerCase().includes(clean)
+          );
+          if (!items.length) { listEstado.classList.remove("active"); return; }
+          listEstado.innerHTML = items.map(e => `
+            <li class="dropdown-item" data-uf="${e.uf}" data-nome="${e.nome}">
+              <span>${e.nome}</span>
+              <small>${e.uf}</small>
+            </li>`).join("");
+          listEstado.classList.add("active");
+        }
+
+        fields.estado.addEventListener("focus", () => showEstados(fields.estado.value));
+        fields.estado.addEventListener("input", () => showEstados(fields.estado.value));
+
+        listEstado.addEventListener("mousedown", (e) => {
+          const item = e.target.closest(".dropdown-item");
+          if (!item) return;
+          fields.estado.value = `${item.dataset.nome} (${item.dataset.uf})`;
+          selectedUF = item.dataset.uf;
+          answers.uf = selectedUF;
+          listEstado.classList.remove("active");
+          showCidades("");
+          fields.cidade.focus();
+        });
+
+        const listCidade = $("#listCidade");
+        function showCidades(filter = "") {
+          const clean = filter.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          const pool = (selectedUF && CIDADES_POR_UF[selectedUF]) ? CIDADES_POR_UF[selectedUF] : CIDADES_DEFAULT;
+          const items = pool.filter(c => c.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(clean));
+          if (!items.length) { listCidade.classList.remove("active"); return; }
+          listCidade.innerHTML = items.map(c => `<li class="dropdown-item" data-cidade="${c}"><span>${c}</span></li>`).join("");
+          listCidade.classList.add("active");
+        }
+
+        fields.cidade.addEventListener("focus", () => showCidades(fields.cidade.value));
+        fields.cidade.addEventListener("input", () => showCidades(fields.cidade.value));
+
+        listCidade.addEventListener("mousedown", (e) => {
+          const item = e.target.closest(".dropdown-item");
+          if (!item) return;
+          fields.cidade.value = item.dataset.cidade;
+          listCidade.classList.remove("active");
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest("#estado") && !e.target.closest("#listEstado")) listEstado.classList.remove("active");
+          if (!e.target.closest("#cidade") && !e.target.closest("#listCidade")) listCidade.classList.remove("active");
+        });
+
+        fields.telefone.addEventListener("input", () => {
+          let d = fields.telefone.value.replace(/\D/g, "");
+          if (d.length > 11) d = d.slice(0, 11);
+          if (!d) fields.telefone.value = "";
+          else if (d.length <= 2) fields.telefone.value = `(${d}`;
+          else if (d.length <= 6) fields.telefone.value = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+          else if (d.length <= 10) fields.telefone.value = `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+          else fields.telefone.value = `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+        });
+
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          let ok = true;
+
+          if (fields.nome.value.trim().split(/\s+/).length < 2) {
+            $("#err-nome").textContent = "Informe nome e sobrenome.";
+            ok = false;
+          } else { $("#err-nome").textContent = ""; }
+
+          if (fields.telefone.value.replace(/\D/g, "").length < 10) {
+            $("#err-telefone").textContent = "Informe o WhatsApp completo com DDD.";
+            ok = false;
+          } else { $("#err-telefone").textContent = ""; }
+
+          if (!fields.estado.value.trim()) {
+            $("#err-estado").textContent = "Selecione o estado.";
+            ok = false;
+          } else { $("#err-estado").textContent = ""; }
+
+          if (!fields.cidade.value.trim()) {
+            $("#err-cidade").textContent = "Informe a cidade.";
+            ok = false;
+          } else { $("#err-cidade").textContent = ""; }
+
+          if (!fields.consentimento.checked) {
+            $("#err-consentimento").textContent = "Marque a autorização para prosseguir.";
+            ok = false;
+          } else { $("#err-consentimento").textContent = ""; }
+
+          if (!ok) return;
+
+          answers.nome = fields.nome.value.trim();
+          answers.telefone = fields.telefone.value.trim();
+          answers.estado = fields.estado.value.trim();
+          answers.cidade = fields.cidade.value.trim();
+          submitted = true;
+          showStep(FINAL);
+        });
+      }
+
+      function renderFinal() {
+        stage.innerHTML = `
+          <div class="step final-card">
+            <div class="final-check-circle" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            
+            <h1 class="final-title" id="stepTitle" tabindex="-1">Sua avaliação está quase concluída!</h1>
+            <span class="heart-icon" aria-hidden="true">💙</span>
+
+            <p class="final-p">
+              A Dra. Adriana realiza atendimentos particulares e, no momento, não atende por planos de saúde. O pagamento pode ser feito à vista ou parcelado no cartão de crédito.
+            </p>
+
+            <p class="final-p">
+              📇 Ao clicar em "Quero falar com a Dra. Adriana", ela receberá sua avaliação e continuará seu atendimento pelo WhatsApp. O primeiro contato é realizado exclusivamente por mensagens.
+            </p>
+
+            <a class="final-wa-btn" id="waLink" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"></path>
+              </svg>
+              Quero falar com a Dra. Adriana
+            </a>
+          </div>`;
+
+        const msg = [
+          "Olá! Preenchi a triagem e gostaria de falar com a Dra. Adriana Cavalcanti.",
+          "",
+          `Nome: ${answers.nome}`,
+          `WhatsApp: ${answers.telefone}`,
+          `Local: ${answers.cidade} - ${answers.estado}`,
+          `Motivo: ${answers.motivo}`,
+          `Avaliação para: ${answers.paraQuem}`,
+          `Faixa etária: ${answers.faixaEtaria}`,
+          `Disponibilidade em Teresina: ${answers.disponibilidade}`
+        ].join("\n");
+
+        $("#waLink").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+      }
+
+      function updateProgress(step) {
+        const area = $("#progressArea");
+        if (step > TOTAL) { area.hidden = true; return; }
+        area.hidden = false;
+        const pct = Math.round((step / TOTAL) * 100);
+        $("#progressBar").style.width = pct + "%";
+        $("#stepLabel").textContent = `Etapa ${step} de ${TOTAL}`;
+        $("#percentLabel").textContent = pct + "%";
+        $("#progressTrack").setAttribute("aria-valuenow", pct);
+      }
+
+      function showStep(n) {
+        n = clampStep(n);
+        current = n;
+        if (n <= TOTAL - 1) renderQuestion(n);
+        else if (n === TOTAL) renderContact();
+        else renderFinal();
+
+        stage.querySelectorAll("[data-back]").forEach(b => b.addEventListener("click", () => showStep(current - 1)));
+        updateProgress(n);
+
+        const title = $("#stepTitle");
+        if (title) title.focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      showStep(1);
+    })();
+  </script>
+</body>
+</html>
